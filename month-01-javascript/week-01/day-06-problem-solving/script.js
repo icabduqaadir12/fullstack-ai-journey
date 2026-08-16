@@ -44,12 +44,10 @@ const expenses = [
 const getExpensiveExpenses = (expenses) => {
     return expenses.filter((expense) => {
         return expense.amount >= 500;
-    }).map((expense) => {
-        return `$${expense.amount}`
     })
 }
 
-console.log("Expensive Expenses: " + getExpensiveExpenses(expenses))
+console.log("Expensive Expenses: ", getExpensiveExpenses(expenses));
 
 
 // Challenge 2 — Get categories
@@ -60,7 +58,7 @@ const getCategories = (expenses) => {
     })
 }
 
-console.log("Categories: " + getCategories(expenses))
+console.log("Categories: " + getCategories(expenses));
 
 
 // Challenge 3 — Calculate total
@@ -73,4 +71,59 @@ const calculateTotal = (expenses) => {
     return total;
 }
 
-console.log("Total Expenses: $" + calculateTotal(expenses))
+console.log("Total Expenses: $" + calculateTotal(expenses));
+
+
+
+// Challenge 4 — Find the highest expense
+
+const findHighestExpense = (expenses) => {
+    let highestExpense = expenses[0]
+    expenses.forEach((expense) => {
+        if (highestExpense.amount < expense.amount) {
+            highestExpense = expense;
+        }
+    })
+    return highestExpense
+}
+
+console.log('Highest Expense: ' + findHighestExpense(expenses));
+
+
+
+// Challenge 5 — Get Food expenses
+
+const getFoodExpenses = (expenses) => {
+    return expenses.filter((expense) => {
+        return expense.category === 'Food'
+    })
+}
+
+console.log("Food Expenses: ", getFoodExpenses(expenses));
+
+
+
+// Challenge 6 — Discount
+
+// const getDiscountedExpense = function(expenses) {
+//     return expenses.map(function(expense) {
+//         return expense.amount - (expense.amount * 0.1);
+//     });
+// }
+
+
+// console.log("Discounted Expenses: " + getDiscountedExpense(expenses));
+
+const getDiscountedExpense = (expense) => {
+    return {
+        ...expense,
+        amount: expense.amount - (expense.amount * 0.1)
+    };
+};
+
+const processExpenses = (expenses, callback) => {
+    return expenses.map(callback);
+}
+
+let result = processExpenses(expenses, getDiscountedExpense);
+console.log("Result: ", result)
