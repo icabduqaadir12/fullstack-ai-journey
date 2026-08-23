@@ -58,8 +58,9 @@ console.log("Total Salary By Department:", getTotalSalaryByDepartment(employees)
 // Get Top Two Experienced Employees
 
 const getTopTwoExperiencedEmployees = (employees) => {
-    return [...employees].sort((a, b) => b.salary - a.salary)
+    return [...employees]
     .filter((employee) => employee.experience >= 3)
+    .sort((a, b) => b.salary - a.salary)
     .slice(0,2);
 }
 
