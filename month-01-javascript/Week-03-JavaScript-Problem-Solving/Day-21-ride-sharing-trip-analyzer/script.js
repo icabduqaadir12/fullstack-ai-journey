@@ -118,7 +118,7 @@ const getLongestTrips = (trips) => [...trips].filter(trip => trip.distance >= 15
 
 // getRevenueByDriver
 const getRevenueByDriver = (trips) => {
-    return trips.reduce((total, trip) => {
+    return trips.filter(trip => trip.status === 'completed').reduce((total, trip) => {
         const driver = trip.driver
         if (total[driver])
             total[driver] += trip.fare
@@ -130,7 +130,7 @@ const getRevenueByDriver = (trips) => {
     }, {});
 }
 
-// console.log(getRevenueByDriver(trips));
+console.log(getRevenueByDriver(trips));
 
 
 // getHighestRevenueCity
